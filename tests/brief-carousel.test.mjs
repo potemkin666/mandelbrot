@@ -234,6 +234,18 @@ describe('renderCarouselImageResponse', () => {
     );
   });
 
+  it('renders without calling fetch for fonts or other runtime assets', async () => {
+    const originalFetch = globalThis.fetch;
+    globalThis.fetch = async () => {
+      throw new Error('renderCarouselImageResponse should not call fetch');
+    };
+    try {
+      await assertRendersPng('cover');
+    } finally {
+      globalThis.fetch = originalFetch;
+    }
+  });
+
   it('threads the extraHeaders argument onto the Response', async () => {
     const res = await renderCarouselImageResponse(SAMPLE_ENVELOPE, 'cover', {
       'X-Test-Marker': 'carousel-smoke',

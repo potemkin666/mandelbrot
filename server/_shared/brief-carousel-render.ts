@@ -79,6 +79,8 @@ function buildCover(env: Envelope): any {
     type: 'div',
     props: {
       style: {
+        // Intentionally omit fontFamily so @vercel/og uses its bundled
+        // default font instead of introducing a runtime font fetch.
         width: 1200, height: 630,
         backgroundColor: COLORS.ink,
         color: COLORS.bone,
