@@ -129,11 +129,7 @@ describe('carousel route — no placeholder PNG on failure', () => {
     );
   });
 
-  it('FONT_URL uses a Satori-parseable format (ttf / otf / woff — NOT woff2)', async () => {
-    // REGRESSION: an earlier head shipped a woff2 URL. Satori parses
-    // ttf / otf / woff only — a woff2 buffer throws on every render,
-    // the route returns 503, the carousel never delivers. Lock the
-    // format here so a future swap can't regress.
+  it('the renderer avoids runtime CDN font fetches', async () => {
     const { readFileSync } = await import('node:fs');
     const { fileURLToPath } = await import('node:url');
     const { dirname, resolve } = await import('node:path');
@@ -142,14 +138,11 @@ describe('carousel route — no placeholder PNG on failure', () => {
       resolve(__d, '../server/_shared/brief-carousel-render.ts'),
       'utf-8',
     );
-    const fontUrlMatch = src.match(/const FONT_URL\s*=\s*['"]([^'"]+)['"]/);
-    assert.ok(fontUrlMatch, 'FONT_URL constant must exist');
-    const url = fontUrlMatch[1];
-    assert.doesNotMatch(url, /\.woff2($|\?|#)/i, 'woff2 is NOT supported by Satori — use ttf/otf/woff');
-    assert.match(url, /\.(ttf|otf|woff)($|\?|#)/i, 'FONT_URL must end in .ttf, .otf, or .woff');
+    assert.doesNotMatch(src, /cdn\.jsdelivr\.net/i, 'carousel renderer must not depend on jsdelivr at runtime');
+    assert.doesNotMatch(src, /\bfetch\s*\(/, 'carousel renderer must render offline without a font fetch');
   });
 
-  it('the renderer honestly declares Google Fonts as a runtime dependency', async () => {
+  it('the renderer documents its offline-safe default font path', async () => {
     const { readFileSync } = await import('node:fs');
     const { fileURLToPath } = await import('node:url');
     const { dirname, resolve } = await import('node:path');
@@ -158,15 +151,11 @@ describe('carousel route — no placeholder PNG on failure', () => {
       resolve(__d, '../server/_shared/brief-carousel-render.ts'),
       'utf-8',
     );
-    // Earlier comment lied about a "safe embedded/fallback path" that
-    // didn't exist. The corrected comment must either honestly declare
-    // the CDN dependency OR actually ship an embedded fallback font.
-    const hasHonestDependency =
-      /RUNTIME DEPENDENCY/i.test(src) || /hard runtime dependency/i.test(src);
-    const hasEmbeddedFallback = /const EMBEDDED_FONT_BASE64/.test(src);
+    const hasOfflineDefault =
+      /bundled default font/i.test(src) || /without a runtime network dependency/i.test(src);
     assert.ok(
-      hasHonestDependency || hasEmbeddedFallback,
-      'font loading must EITHER declare the CDN dependency OR ship an embedded fallback',
+      hasOfflineDefault,
+      'renderer comments must document the offline-safe default font path',
     );
   });
 });
@@ -175,15 +164,10 @@ describe('carousel route — no placeholder PNG on failure', () => {
 //
 // Exercises @vercel/og's ImageResponse against each layout. Catches:
 //   - Satori tree-shape regressions (bad style/children keys throw)
-//   - Font fetch breakage (jsdelivr down, wrong format, etc.)
+//   - Runtime font dependency regressions
 //   - resvg-wasm init failure (rare but has happened)
 //   - PNG output corruption (wrong magic, zero bytes)
 //
-// Hits the real jsdelivr CDN for the Noto Serif TTF. Same network
-// footprint as the rest of the data suite (which calls FRED, IMF,
-// etc.). If that ever becomes a problem, swap loadFont() to an
-// embedded base64 TTF per the comment in brief-carousel-render.ts.
-
 const SAMPLE_ENVELOPE = {
   version: 1,
   issuedAt: Date.now(),

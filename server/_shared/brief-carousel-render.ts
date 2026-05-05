@@ -19,44 +19,13 @@
  *  - Page templates are simplified versions of the magazine's
  *    cover / threads / first-story pages. They are not pixel-matched
  *    — the carousel is a teaser, not a replacement for the HTML.
- *  - The renderer owns font loading + ImageResponse construction.
- *    The edge route layer owns HMAC verification + Redis lookup.
+ *  - The renderer relies on @vercel/og's bundled default font so it
+ *    can render in tests and edge isolates without a runtime network
+ *    dependency. The edge route layer owns HMAC verification + Redis
+ *    lookup.
  */
 
 import { ImageResponse } from '@vercel/og';
-
-// RUNTIME DEPENDENCY on Google Fonts CDN via jsdelivr.
-//
-// Noto Serif Regular is fetched once per isolate, memoised, and
-// passed into ImageResponse's `fonts` option. Satori parses
-// ttf/otf/woff — NOT woff2 — so we pull the TTF-backed woff from
-// @fontsource via jsdelivr (SIL Open Font License, public domain).
-// Same pattern @vercel/og uses internally for its default font.
-//
-// Consequence: if jsdelivr is unreachable, loadFont() throws,
-// renderCarouselImageResponse rethrows, the route returns 503
-// no-store, Telegram's sendMediaGroup for that brief drops the
-// whole carousel, and the next cron tick re-renders from a fresh
-// isolate. Swap this fetch for a bundled base64 TTF if flakiness
-// ever becomes a problem.
-const FONT_URL = 'https://cdn.jsdelivr.net/npm/@fontsource/noto-serif/files/noto-serif-latin-400-normal.woff';
-let _fontCache: ArrayBuffer | null = null;
-
-async function loadFont(): Promise<ArrayBuffer> {
-  if (_fontCache) return _fontCache;
-  try {
-    const res = await fetch(FONT_URL, {
-      signal: AbortSignal.timeout(5_000),
-      headers: { 'User-Agent': 'worldmonitor-carousel/1.0' },
-    });
-    if (!res.ok) throw new Error(`font fetch ${res.status}`);
-    _fontCache = await res.arrayBuffer();
-    return _fontCache;
-  } catch (err) {
-    console.warn('[brief-carousel] font fetch failed:', (err as Error).message);
-    throw err;
-  }
-}
 
 // ── Colour palette (must match magazine's aesthetic) ───────────────────────
 
@@ -114,7 +83,7 @@ function buildCover(env: Envelope): any {
         backgroundColor: COLORS.ink,
         color: COLORS.bone,
         display: 'flex', flexDirection: 'column',
-        padding: '60px 72px', fontFamily: 'NotoSerif',
+        padding: '60px 72px',
       },
       children: [
         {
@@ -183,7 +152,7 @@ function buildThreads(env: Envelope): any {
         backgroundColor: COLORS.cream,
         color: COLORS.creamInk,
         display: 'flex', flexDirection: 'column',
-        padding: '60px 72px', fontFamily: 'NotoSerif',
+        padding: '60px 72px',
       },
       children: [
         {
@@ -257,7 +226,7 @@ function buildStory(env: Envelope): any {
         backgroundColor: COLORS.paper,
         color: COLORS.paperInk,
         display: 'flex',
-        padding: '60px 72px', fontFamily: 'NotoSerif',
+        padding: '60px 72px',
       },
       children: [
         {
@@ -320,9 +289,9 @@ function buildStory(env: Envelope): any {
 
 /**
  * Render a single page of the carousel into an ImageResponse.
- * Throws on structurally unusable envelope OR font-fetch failure —
- * callers (the edge route) should catch + return 503 no-store so
- * Vercel's CDN + Telegram's media fetcher don't pin a bad render.
+ * Throws on structurally unusable envelope — callers (the edge route)
+ * should catch + return 503 no-store so Vercel's CDN + Telegram's
+ * media fetcher don't pin a bad render.
  */
 export async function renderCarouselImageResponse(
   envelope: Envelope,
@@ -330,8 +299,6 @@ export async function renderCarouselImageResponse(
   extraHeaders: Record<string, string> = {},
 ): Promise<ImageResponse> {
   if (!envelope?.data) throw new Error('invalid envelope');
-
-  const fontData = await loadFont();
 
   const tree =
     page === 'cover' ? buildCover(envelope) :
@@ -341,13 +308,6 @@ export async function renderCarouselImageResponse(
   return new ImageResponse(tree, {
     width: 1200,
     height: 630,
-    fonts: [
-      // Satori approximates bold by stroking wider when fontWeight
-      // >= 700 is declared without a matching face. Good enough for
-      // a teaser card; a second @font-face isn't worth the bundle
-      // and cold-start cost.
-      { name: 'NotoSerif', data: fontData, weight: 400, style: 'normal' },
-    ],
     headers: extraHeaders,
   });
 }
