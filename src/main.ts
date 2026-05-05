@@ -5,6 +5,7 @@ import * as Sentry from '@sentry/browser';
 import { inject } from '@vercel/analytics';
 import { App } from './App';
 import { installUtmInterceptor } from './utils/utm';
+import { LOCAL_SHELL_LABELS, type LocalShellState } from './utils/local-shell';
 
 const sentryDsn = import.meta.env.VITE_SENTRY_DSN?.trim();
 
@@ -718,11 +719,11 @@ installWebApiRedirect();
 installStaleBundleCheck();
 loadDesktopSecrets().catch(() => {});
 
-const setMandelBootState = (mode: 'starting' | 'error', detail: string): void => {
+const setMandelBootState = (mode: Extract<LocalShellState, 'starting' | 'error'>, detail: string): void => {
   document.body.dataset.mandelState = mode;
   const stateEl = document.getElementById('mandelDockState');
   const detailEl = document.getElementById('mandelDockUpdated');
-  if (stateEl) stateEl.textContent = mode === 'starting' ? 'Booting local tide' : 'Startup snag';
+  if (stateEl) stateEl.textContent = LOCAL_SHELL_LABELS[mode];
   if (detailEl) detailEl.textContent = detail;
 };
 

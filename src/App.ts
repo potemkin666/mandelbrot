@@ -80,6 +80,7 @@ import { DataLoaderManager } from '@/app/data-loader';
 import { EventHandlerManager } from '@/app/event-handlers';
 import { resolveUserRegion, resolvePreciseUserCoordinates, type PreciseCoordinates } from '@/utils/user-location';
 import { showProBanner } from '@/components/ProBanner';
+import { LOCAL_SHELL_LABELS, type LocalShellState } from '@/utils/local-shell';
 import { initAuthState, subscribeAuthState } from '@/services/auth-state';
 import { install as installCloudPrefsSync, onSignIn as cloudPrefsSignIn, onSignOut as cloudPrefsSignOut } from '@/utils/cloud-prefs-sync';
 import { getConvexClient, getConvexApi, waitForConvexAuth } from '@/services/convex-client';
@@ -259,16 +260,11 @@ export class App {
     this.cachedModeBannerEl = null;
   }
 
-  private updateMandelDock(mode: 'starting' | 'ready' | 'error', detail: string): void {
+  private updateMandelDock(mode: LocalShellState, detail: string): void {
     document.body.dataset.mandelState = mode;
     const stateEl = document.getElementById('mandelDockState');
     const detailEl = document.getElementById('mandelDockUpdated');
-    const stateLabels = {
-      starting: 'Booting local tide',
-      ready: 'Local waters steady',
-      error: 'Startup snag',
-    } as const;
-    if (stateEl) stateEl.textContent = stateLabels[mode];
+    if (stateEl) stateEl.textContent = LOCAL_SHELL_LABELS[mode];
     if (detailEl) detailEl.textContent = detail;
   }
 

@@ -100,7 +100,7 @@ import {
 import { BETA_MODE } from '@/config/beta';
 import { t } from '@/services/i18n';
 import { getCurrentTheme } from '@/utils';
-import { resetMandelLocalData } from '@/utils/local-reset';
+import { resetLocalAppData } from '@/utils/local-reset';
 import { trackCriticalBannerAction } from '@/services/analytics';
 import { CustomWidgetPanel } from '@/components/CustomWidgetPanel';
 import { openWidgetChatModal } from '@/components/WidgetChatModal';
@@ -335,7 +335,7 @@ export class PanelLayoutManager implements AppModule {
     document.getElementById('mandelRefreshBtn')?.addEventListener('click', () => window.location.reload());
     document.getElementById('mandelResetBtn')?.addEventListener('click', () => {
       if (!window.confirm("Clear Mandel's saved layout, cache, and local tide pools for this browser?")) return;
-      void resetMandelLocalData();
+      void resetLocalAppData();
     });
 
     // Handle analyst action chip "Create chart widget →" click

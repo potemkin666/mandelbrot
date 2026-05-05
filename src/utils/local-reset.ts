@@ -21,7 +21,7 @@ function deleteIndexedDb(name: string): Promise<void> {
   });
 }
 
-export async function resetMandelLocalData(): Promise<void> {
+export async function resetLocalAppData(): Promise<void> {
   try {
     const keys = new Set<string>(CLOUD_SYNC_KEYS as readonly string[]);
     for (let index = localStorage.length - 1; index >= 0; index -= 1) {

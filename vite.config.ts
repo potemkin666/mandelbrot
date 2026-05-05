@@ -733,10 +733,10 @@ export default defineConfig(({ mode }) => {
   Object.assign(process.env, env);
 
   const isE2E = process.env.VITE_E2E === '1';
-  const autoOpenBrowser = env.WM_AUTO_OPEN_BROWSER === 'true'
-    ? true
-    : env.WM_AUTO_OPEN_BROWSER === 'false'
-      ? false
+  const autoOpenBrowser = env.WM_AUTO_OPEN_BROWSER === 'false'
+    ? false
+    : env.WM_AUTO_OPEN_BROWSER === 'true'
+      ? true
       : !isE2E;
   const isDesktopBuild = process.env.VITE_DESKTOP_RUNTIME === '1';
   const activeVariant = process.env.VITE_VARIANT || 'full';
