@@ -2335,6 +2335,22 @@ body.panel-resize-active iframe {
   color: var(--text);
 }
 
+.live-news-manage-source-note {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+
+.live-news-manage-source-note a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.live-news-manage-source-note a:hover {
+  text-decoration: underline;
+}
+
 .live-news-manage-add {
   display: flex;
   flex-wrap: wrap;
