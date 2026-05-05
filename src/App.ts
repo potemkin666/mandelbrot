@@ -259,6 +259,19 @@ export class App {
     this.cachedModeBannerEl = null;
   }
 
+  private updateMandelDock(mode: 'starting' | 'ready' | 'error', detail: string): void {
+    document.body.dataset.mandelState = mode;
+    const stateEl = document.getElementById('mandelDockState');
+    const detailEl = document.getElementById('mandelDockUpdated');
+    const stateLabels = {
+      starting: 'Booting local tide',
+      ready: 'Local waters steady',
+      error: 'Startup snag',
+    } as const;
+    if (stateEl) stateEl.textContent = stateLabels[mode];
+    if (detailEl) detailEl.textContent = detail;
+  }
+
   private async primeVisiblePanelData(forceAll = false): Promise<void> {
     const tasks: Promise<unknown>[] = [];
     const primeTask = (key: string, task: () => Promise<unknown>): void => {
@@ -1059,6 +1072,7 @@ export class App {
     // init() is async so the dynamic MapContainer import can resolve before
     // downstream code (e.g. mobileGeoCoords→state.map.setCenter) reads ctx.map.
     await this.panelLayout.init();
+    this.updateMandelDock('starting', 'Local shell online. Filling the map tank and panel reef...');
     showProBanner(this.state.container);
     this.updateConnectivityUi();
     window.addEventListener('online', this.handleConnectivityChange);
@@ -1221,6 +1235,7 @@ export class App {
       panel_count: Object.keys(this.state.panels).length,
     });
     this.eventHandlers.setupPanelViewTracking();
+    this.updateMandelDock('ready', `Ready at ${window.location.origin} · ${new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`);
   }
 
   /**

@@ -7,8 +7,8 @@ const STORAGE_KEY = 'worldmonitor-theme';
 const DEFAULT_THEME: Theme = 'dark';
 
 function resolveThemeColor(theme: Theme, variant: string | undefined): string {
-  if (theme === 'dark') return variant === 'happy' ? '#1A2332' : '#0a0f0a';
-  return variant === 'happy' ? '#FAFAF5' : '#f8f9fa';
+  if (theme === 'dark') return variant === 'happy' ? '#162634' : '#081922';
+  return variant === 'happy' ? '#F4FBFF' : '#eef7fb';
 }
 
 function updateThemeMetaColor(theme: Theme, variant = document.documentElement.dataset.variant): void {

@@ -1,8 +1,18 @@
 # Changelog
 
-All notable changes to World Monitor are documented here.
+All notable changes to Mandel are documented here.
 
 ## [Unreleased]
+
+### Added
+
+- Portable local launchers for ordinary humans: `RUN ME.bat`, `STOP.bat`, `RUN ME.sh`, `RUN ME.command`, plus `README-FIRST.txt` and `TROUBLESHOOTING.txt` so the project can be opened and started without terminal commands.
+- A local status dock with refresh/reset actions and a more playful signal-aquarium landing treatment.
+
+### Changed
+
+- The default local app path now prefers localhost (`127.0.0.1`) with env-driven host/port/browser-open behavior for safer one-click startup.
+- User-facing branding in the default experience now says **Mandel**, with a darker oceanic palette and rounded shell chrome.
 
 ### Added
 
