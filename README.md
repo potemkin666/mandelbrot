@@ -2,20 +2,12 @@
 
 A local-first signal aquarium for maps, feeds, markets, infrastructure, and other strange global patterns.
 
-![Mandel signal aquarium background](public/images/mandel-signal-aquarium.gif)
-
 ## What this is
-
-Mandel is the weirder, more oceanic face of this project: less corporate dashboard, more haunted command tank full of live signals.
-
-It still does the heavy lifting:
 
 - live world map + globe views
 - news, markets, infrastructure, climate, aviation, maritime, and OSINT-style panels
 - lots of local browser persistence
 - optional desktop / Docker paths already in the repo
-
-But the default experience now aims to feel like a memorable local toy you can just open and run.
 
 ## The zero-terminal way to start
 
@@ -50,14 +42,6 @@ Mandel now prefers localhost by default.
 - The launcher only stops the process tree it started itself.
 
 If you want LAN exposure on purpose, set `WM_HOST=0.0.0.0` yourself before launching.
-
-## What changed in the feel
-
-- user-facing brand text now says **Mandel**
-- darker oceanic palette
-- rounded cards and softer glassy chrome
-- signal-aquarium startup treatment
-- playful local status dock with refresh + reset
 
 ## Local data lives here
 
