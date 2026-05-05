@@ -24,6 +24,10 @@ test('windows launcher uses self-directory, localhost, and friendly failure hand
   const launcher = read('RUN ME.bat');
   assert.match(launcher, /cd \/d "%~dp0"/i);
   assert.match(launcher, /set "HOST=127\.0\.0\.1"/);
+  assert.doesNotMatch(launcher, /\$pid\s*=/i);
+  assert.match(launcher, /\$pidFile='%PID_FILE%';/);
+  assert.match(launcher, /Start-Process -FilePath 'powershell\.exe' -ArgumentList @\(/i);
+  assert.doesNotMatch(launcher, /Start-Process -FilePath 'cmd\.exe'.*\$cmd \+/is);
   assert.match(launcher, /pause/i);
   const stopLauncher = read('STOP.bat');
   assert.match(stopLauncher, /docker compose down/i);

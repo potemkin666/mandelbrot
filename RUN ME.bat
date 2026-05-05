@@ -112,7 +112,7 @@ if not exist "node_modules" (
 )
 
 echo [4/6] Starting Mandel on %URL% ...
-powershell -NoProfile -ExecutionPolicy Bypass -Command "$env:WM_HOST='%HOST%'; $env:WM_PORT='%PORT%'; $env:WM_AUTO_OPEN_BROWSER='false'; $env:BROWSER='none'; $log='%LOG_FILE%'; $pid='%PID_FILE%'; $mode='%MODE_FILE%'; $cmd='npm run dev'; $proc = Start-Process -FilePath 'cmd.exe' -ArgumentList '/c', $cmd + ' > \"' + $log + '\" 2>&1' -WorkingDirectory '%ROOT%' -PassThru; Set-Content -Path $pid -Value $proc.Id; Set-Content -Path $mode -Value 'node-vite';"
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$env:WM_HOST='%HOST%'; $env:WM_PORT='%PORT%'; $env:WM_AUTO_OPEN_BROWSER='false'; $env:BROWSER='none'; $pidFile='%PID_FILE%'; $modeFile='%MODE_FILE%'; $launch='npm run dev *> ''%LOG_FILE%'''; $proc = Start-Process -FilePath 'powershell.exe' -ArgumentList @('-NoProfile', '-ExecutionPolicy', 'Bypass', '-Command', $launch) -WorkingDirectory '%ROOT%' -WindowStyle Hidden -PassThru; Set-Content -Path $pidFile -Value $proc.Id; Set-Content -Path $modeFile -Value 'node-vite';"
 if errorlevel 1 (
   echo.
   echo Mandel could not start its local Node process.
@@ -160,7 +160,7 @@ if exist "app.py" (
   goto :error_pause
 )
 echo [5/6] Starting Mandel on %URL% ...
-powershell -NoProfile -ExecutionPolicy Bypass -Command "$env:HOST='%HOST%'; $env:PORT='%PORT%'; $log='%LOG_FILE%'; $pid='%PID_FILE%'; $mode='%MODE_FILE%'; $cmd='.venv\\Scripts\\python.exe %PY_ENTRY%'; $proc = Start-Process -FilePath 'cmd.exe' -ArgumentList '/c', $cmd + ' > \"' + $log + '\" 2>&1' -WorkingDirectory '%ROOT%' -PassThru; Set-Content -Path $pid -Value $proc.Id; Set-Content -Path $mode -Value 'python';"
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$env:HOST='%HOST%'; $env:PORT='%PORT%'; $pidFile='%PID_FILE%'; $modeFile='%MODE_FILE%'; $launch='& ''.venv\Scripts\python.exe'' ''%PY_ENTRY%'' *> ''%LOG_FILE%'''; $proc = Start-Process -FilePath 'powershell.exe' -ArgumentList @('-NoProfile', '-ExecutionPolicy', 'Bypass', '-Command', $launch) -WorkingDirectory '%ROOT%' -WindowStyle Hidden -PassThru; Set-Content -Path $pidFile -Value $proc.Id; Set-Content -Path $modeFile -Value 'python';"
 if errorlevel 1 goto :error_pause
 goto :wait_for_url
 
