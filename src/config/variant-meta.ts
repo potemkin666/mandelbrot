@@ -13,7 +13,7 @@ export interface VariantMeta {
 
 export const VARIANT_META: { full: VariantMeta; [k: string]: VariantMeta } = {
   full: {
-    title: 'Mandel - Local-First Signal Aquarium',
+    title: 'Mandel',
     description: 'A local-first signal aquarium for live maps, weird feeds, markets, infrastructure, and globe-spanning pattern hunting.',
     keywords: 'mandel, signal aquarium, local-first dashboard, weird web toy, live maps, market data, infrastructure tracking, real-time monitoring, OSINT, flight tracking, AIS ships, earthquake monitor, protest tracker, power outages, oil prices, government spending, polymarket predictions',
     url: 'https://www.worldmonitor.app/',

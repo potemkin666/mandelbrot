@@ -39,7 +39,7 @@ Premium gate is UI-only. The feature degrades gracefully (free users just don't 
 
 ## Technical Details
 - Files: `server/worldmonitor/intelligence/v1/get-country-intel-brief.ts`, `server/worldmonitor/intelligence/v1/deduct-situation.ts`, `server/worldmonitor/news/v1/summarize-article.ts`
-- PR: koala73/worldmonitor#2380
+- PR: potemkin666/worldmonitor#2380
 - Reference: worldmonitor-pro-panel-gating skill (4-layer checklist)
 
 ## Acceptance Criteria

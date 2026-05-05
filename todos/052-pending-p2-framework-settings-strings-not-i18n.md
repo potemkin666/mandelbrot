@@ -39,7 +39,7 @@ Defer i18n to a follow-up PR since the frameworks feature is new and translation
 
 ## Technical Details
 - File: `src/services/preferences-content.ts`
-- PR: koala73/worldmonitor#2380
+- PR: potemkin666/worldmonitor#2380
 - Pattern to follow: existing `t('preferences.*')` calls throughout the same file
 
 ## Acceptance Criteria

@@ -848,6 +848,10 @@ export class App {
       setHiddenSince: (ts) => this.refreshScheduler.setHiddenSince(ts),
       loadDataForLayer: (layer) => { void this.dataLoader.loadDataForLayer(layer as keyof MapLayers); },
       waitForAisData: () => this.dataLoader.waitForAisData(),
+      openCountryBriefByCode: (code) => {
+        const name = CountryIntelManager.resolveCountryName(code);
+        void this.countryIntel.openCountryBriefByCode(code, name);
+      },
       syncDataFreshnessWithLayers: () => this.dataLoader.syncDataFreshnessWithLayers(),
       ensureCorrectZones: () => this.panelLayout.ensureCorrectZones(),
       refreshOpenCountryBrief: () => this.countryIntel.refreshOpenBrief(),

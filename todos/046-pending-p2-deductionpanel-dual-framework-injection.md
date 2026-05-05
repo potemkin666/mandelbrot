@@ -41,7 +41,7 @@ framework: '', // TODO #041: pass fw?.systemPromptAppend here once cache key is 
 
 ## Technical Details
 - File: `src/components/DeductionPanel.ts`
-- PR: koala73/worldmonitor#2380
+- PR: potemkin666/worldmonitor#2380
 - Note: Fix todo #041 (deduct-situation cache key) alongside this fix
 
 ## Acceptance Criteria

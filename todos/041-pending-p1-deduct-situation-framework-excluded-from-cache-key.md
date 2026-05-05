@@ -34,7 +34,7 @@ Same as A but bump version to `v3` to invalidate all existing deduction cache en
 
 ## Technical Details
 - File: `server/worldmonitor/intelligence/v1/deduct-situation.ts`
-- PR: koala73/worldmonitor#2380
+- PR: potemkin666/worldmonitor#2380
 - Related: `server/worldmonitor/intelligence/v1/get-country-intel-brief.ts:38-40` (reference implementation)
 
 ## Acceptance Criteria

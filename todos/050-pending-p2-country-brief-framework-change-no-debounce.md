@@ -40,7 +40,7 @@ Pass an `AbortSignal` to the RPC and cancel it when a new framework change fires
 
 ## Technical Details
 - File: `src/app/country-intel.ts`
-- PR: koala73/worldmonitor#2380
+- PR: potemkin666/worldmonitor#2380
 
 ## Acceptance Criteria
 - [ ] Rapid framework switching triggers only one RPC call (after debounce settles)

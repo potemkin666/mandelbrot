@@ -30,7 +30,7 @@ All notable changes to World Monitor are documented here. Subscribe via [RSS](/c
   - `/api/supply-chain/v1/country-products` → `/api/supply-chain/v1/get-country-products`
   - `/api/supply-chain/v1/multi-sector-cost-shock` → `/api/supply-chain/v1/get-multi-sector-cost-shock`
 
-  Aliases retire at the next v1→v2 break (tracked in [#3282](https://github.com/koala73/worldmonitor/issues/3282)).
+  Aliases retire at the next v1→v2 break (tracked in [#3282](https://github.com/potemkin666/mandelbrot/issues/3282)).
 
 - `POST /api/scenario/v1/run-scenario` now returns `200 OK` instead of the pre-migration `202 Accepted`. sebuf's HTTP annotations don't carry per-RPC status codes. Branch on response body `status === "pending"` instead of `response.status === 202`. `statusUrl` field is preserved.
 

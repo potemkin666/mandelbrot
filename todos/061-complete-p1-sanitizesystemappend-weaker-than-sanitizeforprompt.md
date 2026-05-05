@@ -49,7 +49,7 @@ await callLlm({ ..., systemAppend: framework });
 
 ## Technical Details
 - Files: `server/_shared/llm.ts`, `server/_shared/llm-sanitize.js`, `server/worldmonitor/intelligence/v1/deduct-situation.ts:52`, `server/worldmonitor/intelligence/v1/get-country-intel-brief.ts:99`
-- PR: koala73/worldmonitor#2386
+- PR: potemkin666/worldmonitor#2386
 
 ## Acceptance Criteria
 - [ ] All three LLM handlers apply `sanitizeForPrompt`-level sanitization to `framework`/`systemAppend`

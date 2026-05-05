@@ -45,7 +45,7 @@ Merge `loadFromStorage(PANEL_KEY)` and `loadFrameworkLibrary()` into a single fu
 
 ## Technical Details
 - File: `src/services/analysis-framework-store.ts`
-- PR: koala73/worldmonitor#2380
+- PR: potemkin666/worldmonitor#2380
 
 ## Acceptance Criteria
 - [ ] `getActiveFrameworkForPanel()` makes zero localStorage calls after the first call per panel

@@ -468,6 +468,9 @@ export async function initLiveChannelsWindow(containerEl?: HTMLElement): Promise
         </div>
         <div class="live-news-manage-add-section">
           <span class="live-news-manage-add-title">${escapeHtml(t('components.liveNews.customChannel') ?? 'Custom channel')}</span>
+          <p class="live-news-manage-source-note">
+            Need more free TV channels? Browse <a href="https://famelack.com/" target="_blank" rel="noopener noreferrer">famelack.com</a> and paste any HLS (.m3u8) stream here.
+          </p>
           <div class="live-news-manage-add">
             <div class="live-news-manage-add-field">
               <label class="live-news-manage-add-label" for="liveChannelsHandle">${escapeHtml(t('components.liveNews.youtubeHandleOrUrl') ?? 'YouTube handle or URL')}</label>

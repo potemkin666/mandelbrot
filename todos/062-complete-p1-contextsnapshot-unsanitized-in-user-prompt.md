@@ -46,7 +46,7 @@ If `sanitizeForPrompt` is too aggressive for context (which may include legitima
 
 ## Technical Details
 - File: `server/worldmonitor/intelligence/v1/get-country-intel-brief.ts:32-33, 84-85`
-- PR: koala73/worldmonitor#2386
+- PR: potemkin666/worldmonitor#2386
 
 ## Acceptance Criteria
 - [ ] `contextSnapshot` is sanitized with at minimum control-char + delimiter-token stripping before LLM injection

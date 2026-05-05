@@ -1,7 +1,7 @@
 syntax = "proto3";
 package worldmonitor.intelligence.v1;
 import "sebuf/http/annotations.proto";
-option go_package = "github.com/koala73/worldmonitor/worldmonitor/intelligence/v1";
+option go_package = "github.com/potemkin666/worldmonitor/worldmonitor/intelligence/v1";
 
 message ComputeEnergyShockScenarioRequest {
   string country_code   = 1 [(sebuf.http.query) = {name: "country_code"}];

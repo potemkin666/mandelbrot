@@ -45,7 +45,7 @@ Strip `<`, `>`, `{`, `}` and control characters from `systemAppend`. Leave direc
 
 ## Technical Details
 - Files: `server/_shared/llm.ts`, `server/worldmonitor/intelligence/v1/get-country-intel-brief.ts`, `server/worldmonitor/intelligence/v1/deduct-situation.ts`, `server/worldmonitor/news/v1/summarize-article.ts`
-- PR: koala73/worldmonitor#2380
+- PR: potemkin666/worldmonitor#2380
 - Reference: llm-self-improvement-prompt-injection skill
 
 ## Acceptance Criteria

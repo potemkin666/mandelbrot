@@ -23,6 +23,7 @@ import {
 import {
   buildMapUrl,
   debounce,
+  loadFromStorage,
   saveToStorage,
   ExportPanel,
   getCurrentTheme,
@@ -78,6 +79,7 @@ export interface EventHandlerCallbacks {
   syncDataFreshnessWithLayers: () => void;
   ensureCorrectZones: () => void;
   refreshOpenCountryBrief?: () => void;
+  openCountryBriefByCode?: (code: string) => void;
   stopLayerActivity?: (layer: keyof MapLayers) => void;
   mountLiveNewsIfReady?: () => void;
 }
@@ -478,6 +480,23 @@ export class EventHandlerManager implements AppModule {
       this.ctx.map?.setView(regionSelect.value as MapView);
       trackMapViewChange(regionSelect.value);
     });
+
+    const focusSelect = document.getElementById('focusSelect') as HTMLSelectElement | null;
+    const savedFocusCountry = localStorage.getItem(STORAGE_KEYS.focusCountry);
+    const focusCountry = loadFromStorage<string>(STORAGE_KEYS.focusCountry, 'GB');
+    if (focusSelect) {
+      focusSelect.value = focusCountry;
+      focusSelect.addEventListener('change', () => {
+        const code = focusSelect.value;
+        if (!code) return;
+        saveToStorage(STORAGE_KEYS.focusCountry, code);
+        this.callbacks.openCountryBriefByCode?.(code);
+      });
+      if (savedFocusCountry === null && focusCountry === 'GB') {
+        saveToStorage(STORAGE_KEYS.focusCountry, focusCountry);
+        queueMicrotask(() => this.callbacks.openCountryBriefByCode?.(focusCountry));
+      }
+    }
 
     this.boundResizeHandler = debounce(() => {
       this.ctx.map?.setIsResizing(false);

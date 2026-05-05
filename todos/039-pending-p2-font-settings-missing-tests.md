@@ -40,7 +40,7 @@ test('mono font removes data-font attribute entirely', () => {
 ## Technical Details
 - File: `src/services/font-settings.ts`
 - Test file to create: `tests/font-settings.test.mts`
-- PR: koala73/worldmonitor#2318
+- PR: potemkin666/worldmonitor#2318
 
 ## Acceptance Criteria
 - [ ] Test covers: `applyFont('system')` sets `data-font="system"`

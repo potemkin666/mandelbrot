@@ -11,7 +11,7 @@ import { PRODUCT_CATALOG } from "../config/productCatalog";
 
 const RESEND_URL = "https://api.resend.com/emails";
 const FROM = "World Monitor <noreply@worldmonitor.app>";
-const ADMIN_EMAIL = "elie@worldmonitor.app";
+const ADMIN_EMAIL = "alphafish@worldmonitor.app";
 
 const PLAN_DISPLAY: Record<string, string> = {
   free: "Free",
@@ -200,8 +200,8 @@ function userWelcomeHtml(planName: string, planKey: string): string {
 
   <div style="border-top: 1px solid #1a1a1a; padding: 24px 32px; text-align: center;">
     <div style="margin-bottom: 16px;">
-      <a href="https://x.com/eliehabib" style="color: #666; text-decoration: none; font-size: 12px; margin: 0 12px;">X / Twitter</a>
-      <a href="https://github.com/koala73/worldmonitor" style="color: #666; text-decoration: none; font-size: 12px; margin: 0 12px;">GitHub</a>
+      <a href="https://x.com/worldmonitorai" style="color: #666; text-decoration: none; font-size: 12px; margin: 0 12px;">X / Twitter</a>
+      <a href="https://github.com/potemkin666/mandelbrot" style="color: #666; text-decoration: none; font-size: 12px; margin: 0 12px;">GitHub</a>
     </div>
     <p style="font-size: 11px; color: #444; margin: 0; line-height: 1.6;">
       World Monitor \u2014 Real-time intelligence for a connected world.<br />

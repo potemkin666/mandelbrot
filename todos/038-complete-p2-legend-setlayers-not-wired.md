@@ -24,7 +24,7 @@ Call `updateLegendVisibility()` at the end of `setLayers()`, `enableLayer()`, `t
 ## Technical Details
 - File: `src/components/DeckGLMap.ts`
 - `setLayers()` line ~4653
-- PR: koala73/worldmonitor#2370
+- PR: potemkin666/worldmonitor#2370
 
 ## Acceptance Criteria
 - [ ] Legend updates when layers are changed programmatically (URL restore, presets)

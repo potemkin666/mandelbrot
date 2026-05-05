@@ -29,7 +29,7 @@ Create an RPC endpoint for `buildDailyMarketBrief` that accepts `systemAppend` a
 
 ## Technical Details
 - Files: `src/app/data-loader.ts`, `src/services/daily-market-brief.ts`, `src/components/DailyMarketBriefPanel.ts`
-- PR: koala73/worldmonitor#2380
+- PR: potemkin666/worldmonitor#2380
 
 ## Acceptance Criteria
 - [ ] DailyMarketBrief `FrameworkSelector` has a `*` note indicating client-only scope (like InsightsPanel)

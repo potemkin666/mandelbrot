@@ -35,7 +35,7 @@ Restructure `updateInsights` to accept an optional gen parameter.
 
 ## Technical Details
 - File: `src/components/InsightsPanel.ts`
-- PR: koala73/worldmonitor#2380
+- PR: potemkin666/worldmonitor#2380
 
 ## Acceptance Criteria
 - [ ] Framework change triggers one `updateGeneration` increment total (inside `updateInsights`)

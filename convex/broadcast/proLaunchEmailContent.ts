@@ -1,7 +1,7 @@
 /**
  * Locked PRO-launch email content.
  *
- * The body was finalised on 2026-04-26 with Elie. Source-of-truth copy
+ * The body was finalised on 2026-04-26 with alpha fish. Source-of-truth copy
  * lives in this file (not in code review comments or chat history) so
  * future re-sends can reproduce the exact wording.
  *
@@ -9,8 +9,8 @@
  * separate PR — don't change it inline as part of operational work.
  */
 
-export const PRO_LAUNCH_FROM = "Elie from WorldMonitor <news@worldmonitor.app>";
-export const PRO_LAUNCH_REPLY_TO = "elie@worldmonitor.app";
+export const PRO_LAUNCH_FROM = "alpha fish from WorldMonitor <news@worldmonitor.app>";
+export const PRO_LAUNCH_REPLY_TO = "alphafish@worldmonitor.app";
 export const PRO_LAUNCH_SUBJECT = "You waitlisted WorldMonitor PRO. It's now live.";
 
 // Primary CTA destination. UTMs scoped to this campaign so we can attribute
@@ -31,7 +31,7 @@ const UNSUBSCRIBE_TOKEN = "{{{RESEND_UNSUBSCRIBE_URL}}}";
  * deliverability spam-filter input. Should communicate the same value
  * as the HTML version, not be a stripped-down preview of it.
  */
-export const PRO_LAUNCH_TEXT = `I'm Elie, founder of WorldMonitor. PRO launched today (https://worldmonitor.app/pro). I'm writing because you signed up a month ago, when the product was smaller and different.
+export const PRO_LAUNCH_TEXT = `I'm alpha fish, founder of WorldMonitor. PRO launched today (https://worldmonitor.app/pro). I'm writing because you signed up a month ago, when the product was smaller and different.
 
 Here's what it is now.
 
@@ -45,7 +45,7 @@ It grew a new way to interact with it. Describe any visualization in plain langu
 
 And it became something your AI can use. WorldMonitor is accessible via REST API and MCP server. Connect it to Claude, ChatGPT, or Cursor in three minutes, and 28 live data tools become available inside your AI chat. Ask Claude "what's happening in the Taiwan Strait right now" and it pulls real-time data instead of training-set memories.
 
-More than half of this didn't exist 45 days ago. The open-source repo (https://github.com/koala73/worldmonitor) crossed 50,000 GitHub stars in the same window. That's the build pace.
+More than half of this didn't exist 45 days ago. The open-source repo (https://github.com/potemkin666/mandelbrot) crossed 50,000 GitHub stars in the same window. That's the build pace.
 
 Most of it is in the free dashboard. PRO is where the two things you just read about earn their keep:
 
@@ -66,7 +66,7 @@ Code EARLYWM30: 30% off any PRO plan, 30 days. If anything above made you think 
 
 If not, reply and tell me what was missing. That's the one I'll act on.
 
-Elie
+alpha fish
 
 —
 
@@ -81,14 +81,14 @@ ${PRO_LAUNCH_PHYSICAL_ADDRESS}
  */
 export const PRO_LAUNCH_HTML = `<!DOCTYPE html><html><body style="margin:0;padding:0;background:#ffffff;color:#111;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;">
 <div style="max-width:620px;margin:0 auto;padding:32px 24px;">
-<p>I'm Elie, founder of WorldMonitor. <a href="https://worldmonitor.app/pro?utm_source=resend&utm_medium=email&utm_campaign=pro-launch&utm_content=opener" style="color:#0066cc;">PRO launched today</a>. I'm writing because you signed up a month ago, when the product was smaller and different.</p>
+<p>I'm alpha fish, founder of WorldMonitor. <a href="https://worldmonitor.app/pro?utm_source=resend&utm_medium=email&utm_campaign=pro-launch&utm_content=opener" style="color:#0066cc;">PRO launched today</a>. I'm writing because you signed up a month ago, when the product was smaller and different.</p>
 <p>Here's what it is now.</p>
 <p>WorldMonitor stopped being only a real-time monitoring dashboard, though it still excels at that. It's also a research tool now. It tracks what's happening, and it forecasts what happens next: scenario probabilities on conflicts, market reactions to headlines, supply-chain shock paths, country stability trajectories. You read the present and stress-test the future in the same place.</p>
 <p><strong>The dashboard grew sideways.</strong> Conflicts stream live alongside sanctions, regime shifts, GPS jamming, displacement, climate anomalies. Bilateral trade flows, tariff trends, chokepoint indices, route disruption, cost-shock simulations, stability scoring across 137 countries with deep coverage on 40+ indicators. AI stock analysis with price targets, backtesting, a scanner for tickers trending on Reddit. Live aircraft tracking, civilian and military: fighter scrambles over the Taiwan Strait, carrier strike groups in the Persian Gulf, special-ops by callsign, 100+ airports for delays and cascades. Useful when something breaks at 3 a.m. and a price chart won't tell you why.</p>
 <p><strong>It grew a dedicated energy variant.</strong> <a href="https://energy.worldmonitor.app" style="color:#0066cc;">energy.worldmonitor.app</a>: live traffic and exposure on the four major shipping chokepoints, tanker positions in real time, 631 oil and gas pipelines mapped, global strategic storage atlas, refinery utilization, retail fuel prices.</p>
 <p><strong>It grew a new way to interact with it.</strong> Describe any visualization in plain language: <em>"crude oil versus gold today," "worst international flight delays right now."</em> The AI builds it as a live widget on your dashboard. Save as many as you want.</p>
 <p><strong>And it became something your AI can use.</strong> WorldMonitor is accessible via REST API and MCP server. Connect it to Claude, ChatGPT, or Cursor in three minutes, and 28 live data tools become available inside your AI chat. Ask Claude <em>"what's happening in the Taiwan Strait right now"</em> and it pulls real-time data instead of training-set memories.</p>
-<p>More than half of this didn't exist 45 days ago. The <a href="https://github.com/koala73/worldmonitor" style="color:#0066cc;">open-source repo</a> crossed 50,000 GitHub stars in the same window. That's the build pace.</p>
+<p>More than half of this didn't exist 45 days ago. The <a href="https://github.com/potemkin666/mandelbrot" style="color:#0066cc;">open-source repo</a> crossed 50,000 GitHub stars in the same window. That's the build pace.</p>
 <p>Most of it is in the free dashboard. PRO is where the two things you just read about earn their keep:</p>
 <p><strong>AI Widget Builder.</strong> Plain language, live widget on your dashboard. Save as many as you want.</p>
 <p><strong>Native AI context.</strong> MCP server plus a 27-endpoint REST API — <a href="https://worldmonitor.app/docs/documentation" style="color:#0066cc;">full docs</a>. Plug it into Claude, ChatGPT, Cursor, or anything you're building.</p>

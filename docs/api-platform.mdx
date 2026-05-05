@@ -21,13 +21,13 @@ Use this on initial page load to avoid 40 parallel RPC calls.
 
 ### `GET /api/version`
 
-Returns the latest **GitHub Release** of `koala73/worldmonitor`. Used by the desktop app to detect a newer published release and prompt the user to update. It is **not** the currently-deployed Vercel commit.
+Returns the latest **GitHub Release** of `potemkin666/worldmonitor`. Used by the desktop app to detect a newer published release and prompt the user to update. It is **not** the currently-deployed Vercel commit.
 
 ```json
 {
   "version": "2.6.7",
   "tag": "v2.6.7",
-  "url": "https://github.com/koala73/worldmonitor/releases/tag/v2.6.7",
+  "url": "https://github.com/potemkin666/mandelbrot/releases/tag/v2.6.7",
   "prerelease": false
 }
 ```
@@ -123,7 +123,7 @@ City name → coordinates lookup.
 
 ### `GET /api/download?platform=<id>&variant=<id>`
 
-Redirects to the matching asset on the latest GitHub release of `koala73/worldmonitor`. Returns `302` to the asset URL on success, or `302` to [releases/latest](https://github.com/koala73/worldmonitor/releases/latest) on any failure (unknown platform, no match, GitHub error).
+Redirects to the matching asset on the latest GitHub release of `potemkin666/worldmonitor`. Returns `302` to the asset URL on success, or `302` to [releases/latest](https://github.com/potemkin666/mandelbrot/releases/latest) on any failure (unknown platform, no match, GitHub error).
 
 **`platform`** (required, exact string):
 

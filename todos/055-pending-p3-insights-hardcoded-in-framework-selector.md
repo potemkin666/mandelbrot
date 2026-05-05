@@ -33,7 +33,7 @@ Remove the `if panelId === 'insights'` branch from the constructor.
 
 ## Technical Details
 - File: `src/components/FrameworkSelector.ts`
-- PR: koala73/worldmonitor#2380
+- PR: potemkin666/worldmonitor#2380
 
 ## Acceptance Criteria
 - [ ] No panel IDs hardcoded in `FrameworkSelector` constructor
