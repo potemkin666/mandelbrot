@@ -544,7 +544,7 @@ export class PanelLayoutManager implements AppModule {
             </a>`;
       })()}</div>
           <span class="logo">MANDEL</span><span class="logo-mobile">Mandel</span><span class="version">v${__APP_VERSION__}</span>${BETA_MODE ? '<span class="beta-badge">BETA</span>' : ''}
-          <a href="https://www.worldmonitor.app" target="_blank" rel="noopener" class="credit-link">
+          <a href="https://x.com/worldmonitorai" target="_blank" rel="noopener" class="credit-link">
             <svg class="x-logo" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             <span class="credit-text">alpha fish</span>
           </a>
@@ -625,7 +625,7 @@ export class PanelLayoutManager implements AppModule {
           <span class="mobile-menu-item-icon">${getCurrentTheme() === 'dark' ? '☀️' : '🌙'}</span>
           <span class="mobile-menu-item-label">${getCurrentTheme() === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
         </button>
-        <a class="mobile-menu-item" href="https://www.worldmonitor.app" target="_blank" rel="noopener">
+        <a class="mobile-menu-item" href="https://x.com/worldmonitorai" target="_blank" rel="noopener">
           <span class="mobile-menu-item-icon"><svg class="x-logo" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span>
           <span class="mobile-menu-item-label">alpha fish</span>
         </a>
@@ -694,7 +694,7 @@ export class PanelLayoutManager implements AppModule {
           <img src="/favico/favicon-32x32.png" alt="" width="28" height="28" class="site-footer-icon" />
           <div class="site-footer-brand-text">
             <span class="site-footer-name">MANDEL</span>
-            <span class="site-footer-sub">v${__APP_VERSION__} &middot; <a href="https://www.worldmonitor.app" target="_blank" rel="noopener" class="site-footer-credit">alpha fish</a></span>
+            <span class="site-footer-sub">v${__APP_VERSION__} &middot; <a href="https://x.com/worldmonitorai" target="_blank" rel="noopener" class="site-footer-credit">alpha fish</a></span>
           </div>
         </div>
         <div class="mandel-dock" id="mandelDock" role="status" aria-live="polite">
