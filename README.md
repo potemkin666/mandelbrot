@@ -2,7 +2,7 @@
 
 A local-first signal aquarium for maps, feeds, markets, infrastructure, and other strange global patterns.
 
-<img src="https://github.com/user-attachments/assets/f28c20e1-29d0-4d00-a6b6-f440e85f3362" alt="Mandel project image" width="420">
+<img src="https://github.com/user-attachments/assets/f28c20e1-29d0-4d00-a6b6-f440e85f3362" alt="Cyberpunk-style illustrated character holding a pistol under neon lights" width="420">
 
 ## What this is
 
