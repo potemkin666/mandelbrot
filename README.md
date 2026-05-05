@@ -2,6 +2,8 @@
 
 A local-first signal aquarium for maps, feeds, markets, infrastructure, and other strange global patterns.
 
+<img src="https://github.com/user-attachments/assets/f28c20e1-29d0-4d00-a6b6-f440e85f3362" alt="Cyberpunk-style illustrated character holding a pistol under neon lights" width="420">
+
 ## What this is
 
 - live world map + globe views
@@ -25,8 +27,8 @@ A local-first signal aquarium for maps, feeds, markets, infrastructure, and othe
 - Double-click **RUN ME.command** on macOS if your system allows it.
 - Or run **RUN ME.sh**.
 
-For the very human version of the instructions, read **README-FIRST.txt**.
-For rescue steps, read **TROUBLESHOOTING.txt**.
+For the very human version of the instructions, read **[docs/local-launcher/README-FIRST.txt](docs/local-launcher/README-FIRST.txt)**.
+For rescue steps, read **[docs/local-launcher/TROUBLESHOOTING.txt](docs/local-launcher/TROUBLESHOOTING.txt)**.
 
 ## Default local URL
 

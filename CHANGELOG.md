@@ -6,7 +6,7 @@ All notable changes to Mandel are documented here.
 
 ### Added
 
-- Portable local launchers for ordinary humans: `RUN ME.bat`, `STOP.bat`, `RUN ME.sh`, `RUN ME.command`, plus `README-FIRST.txt` and `TROUBLESHOOTING.txt` so the project can be opened and started without terminal commands.
+- Portable local launchers for ordinary humans: `RUN ME.bat`, `STOP.bat`, `RUN ME.sh`, `RUN ME.command`, plus `docs/local-launcher/README-FIRST.txt` and `docs/local-launcher/TROUBLESHOOTING.txt` so the project can be opened and started without terminal commands.
 - A local status dock with refresh/reset actions and a more playful signal-aquarium landing treatment.
 
 ### Changed
