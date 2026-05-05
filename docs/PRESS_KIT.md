@@ -277,7 +277,7 @@ A: World Monitor is primarily a solo project by its creator, with occasional ope
 
 For press inquiries, interview requests, or additional information:
 
-- **GitHub**: github.com/koala73/worldmonitor
+- **GitHub**: github.com/potemkin666/worldmonitor
 - **Website**: worldmonitor.app
 
 ---

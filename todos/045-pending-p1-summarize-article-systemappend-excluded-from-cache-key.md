@@ -38,7 +38,7 @@ Store framework-aware summaries under a different key prefix (e.g., `wm-sum-fw:v
 
 ## Technical Details
 - File: `server/worldmonitor/news/v1/summarize-article.ts`, `server/worldmonitor/news/v1/_shared.ts`
-- PR: koala73/worldmonitor#2380
+- PR: potemkin666/worldmonitor#2380
 
 ## Acceptance Criteria
 - [ ] `getCacheKey` (or equivalent) includes a hash of `systemAppend` when non-empty

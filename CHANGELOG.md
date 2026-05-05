@@ -37,7 +37,7 @@ All notable changes to Mandel are documented here.
   - `/api/supply-chain/v1/country-products` → `/api/supply-chain/v1/get-country-products`
   - `/api/supply-chain/v1/multi-sector-cost-shock` → `/api/supply-chain/v1/get-multi-sector-cost-shock`
 
-  Aliases will retire at the next v1→v2 break ([#3282](https://github.com/koala73/worldmonitor/issues/3282)).
+  Aliases will retire at the next v1→v2 break ([#3282](https://github.com/potemkin666/mandelbrot/issues/3282)).
 
 - `POST /api/scenario/v1/run-scenario` now returns `200 OK` instead of the pre-migration `202 Accepted` on successful enqueue. sebuf's HTTP annotations don't support per-RPC status codes. Branch on response body `status === "pending"` instead of `response.status === 202`. `statusUrl` is preserved.
 

@@ -36,7 +36,7 @@ Add "Export frameworks" / "Import frameworks" buttons specifically in the Analys
 
 ## Technical Details
 - Files: `src/services/analysis-framework-store.ts`, `src/services/preferences-content.ts`
-- PR: koala73/worldmonitor#2380
+- PR: potemkin666/worldmonitor#2380
 
 ## Acceptance Criteria
 - [ ] Settings export JSON includes `wm-analysis-frameworks` and `wm-panel-frameworks`

@@ -35,7 +35,7 @@ The if/else is not harmful, just not minimal. Accept current form.
 
 ## Technical Details
 - File: `src/services/font-settings.ts`, `src/styles/main.css`
-- PR: koala73/worldmonitor#2318
+- PR: potemkin666/worldmonitor#2318
 
 ## Acceptance Criteria
 - [ ] `applyFont()` is one expression

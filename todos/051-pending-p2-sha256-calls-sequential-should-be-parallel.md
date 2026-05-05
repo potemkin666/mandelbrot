@@ -39,7 +39,7 @@ The `frameworkRaw` is clamped to 2000 chars and is not an attacker-controlled co
 
 ## Technical Details
 - File: `server/worldmonitor/intelligence/v1/get-country-intel-brief.ts:38-39`
-- PR: koala73/worldmonitor#2380
+- PR: potemkin666/worldmonitor#2380
 
 ## Acceptance Criteria
 - [ ] The two SHA-256 calls run in parallel (or one is replaced with sync hash)

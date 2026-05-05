@@ -101,6 +101,7 @@ import { BETA_MODE } from '@/config/beta';
 import { t } from '@/services/i18n';
 import { getCurrentTheme } from '@/utils';
 import { resetLocalAppData } from '@/utils/local-reset';
+import { CURATED_COUNTRIES } from '@/config/countries';
 import { trackCriticalBannerAction } from '@/services/analytics';
 import { CustomWidgetPanel } from '@/components/CustomWidgetPanel';
 import { openWidgetChatModal } from '@/components/WidgetChatModal';
@@ -175,6 +176,15 @@ export interface PanelLayoutManagerCallbacks {
   updateMonitorResults: () => void;
   loadSecurityAdvisories?: () => Promise<void>;
 }
+
+const DEFAULT_FOCUS_COUNTRY = 'GB';
+const FOCUS_COUNTRY_OPTIONS = Object.entries(CURATED_COUNTRIES)
+  .map(([code, config]) => ({ code, name: config.name }))
+  .sort((a, b) => {
+    if (a.code === DEFAULT_FOCUS_COUNTRY) return -1;
+    if (b.code === DEFAULT_FOCUS_COUNTRY) return 1;
+    return a.name.localeCompare(b.name);
+  });
 
 export class PanelLayoutManager implements AppModule {
   private ctx: AppContext;
@@ -331,7 +341,6 @@ export class PanelLayoutManager implements AppModule {
     this.unsubscribeAuth = subscribeAuthState((state) => {
       this.updatePanelGating(state);
     });
-    this.fetchGitHubStars();
     document.getElementById('mandelRefreshBtn')?.addEventListener('click', () => window.location.reload());
     document.getElementById('mandelResetBtn')?.addEventListener('click', () => {
       if (!window.confirm("Clear Mandel's saved layout, cache, and local tide pools for this browser?")) return;
@@ -459,22 +468,6 @@ export class PanelLayoutManager implements AppModule {
     }
   }
 
-  private async fetchGitHubStars(): Promise<void> {
-    try {
-      const response = await fetch('https://api.github.com/repos/koala73/worldmonitor');
-      if (!response.ok) return;
-      const data = await response.json();
-      const starsEl = document.getElementById('githubStars');
-      if (starsEl) {
-        const count = data.stargazers_count;
-        const k = Math.round(count / 1000);
-        starsEl.textContent = `${k}k`;
-      }
-    } catch (e) {
-      // ignore errors
-    }
-  }
-
   async renderLayout(): Promise<void> {
     this.ctx.container.innerHTML = `
       ${this.ctx.isDesktopApp ? '<div class="tauri-titlebar" data-tauri-drag-region></div>' : ''}
@@ -544,14 +537,7 @@ export class PanelLayoutManager implements AppModule {
             </a>`;
       })()}</div>
           <span class="logo">MANDEL</span><span class="logo-mobile">Mandel</span><span class="version">v${__APP_VERSION__}</span>${BETA_MODE ? '<span class="beta-badge">BETA</span>' : ''}
-          <a href="https://x.com/worldmonitorai" target="_blank" rel="noopener" class="credit-link">
-            <svg class="x-logo" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            <span class="credit-text">alpha fish</span>
-          </a>
-          <a href="https://github.com/koala73/worldmonitor" target="_blank" rel="noopener" class="github-link" title="${t('header.viewOnGitHub')}">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-            <span class="github-stars" id="githubStars"></span>
-          </a>
+          <span class="credit-link"><span class="credit-text">alpha fish</span></span>
           <button class="mobile-settings-btn" id="mobileSettingsBtn" title="${t('header.settings')}">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
           </button>
@@ -571,6 +557,10 @@ export class PanelLayoutManager implements AppModule {
               <option value="oceania">${t('components.deckgl.views.oceania')}</option>
             </select>
           </div>
+          <label class="focus-label" for="focusSelect">Focus</label>
+          <select id="focusSelect" class="focus-select" aria-label="Country focus">
+            ${FOCUS_COUNTRY_OPTIONS.map(({ code, name }) => `<option value="${code}">${name}</option>`).join('')}
+          </select>
           <button class="mobile-search-btn" id="mobileSearchBtn" aria-label="${t('header.search')}">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           </button>
@@ -625,10 +615,10 @@ export class PanelLayoutManager implements AppModule {
           <span class="mobile-menu-item-icon">${getCurrentTheme() === 'dark' ? '☀️' : '🌙'}</span>
           <span class="mobile-menu-item-label">${getCurrentTheme() === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
         </button>
-        <a class="mobile-menu-item" href="https://x.com/worldmonitorai" target="_blank" rel="noopener">
-          <span class="mobile-menu-item-icon"><svg class="x-logo" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span>
+        <div class="mobile-menu-item">
+          <span class="mobile-menu-item-icon">🐟</span>
           <span class="mobile-menu-item-label">alpha fish</span>
-        </a>
+        </div>
         <div class="mobile-menu-divider"></div>
         <div class="mobile-menu-footer-links">
           <a href="${this.ctx.isDesktopApp ? 'https://worldmonitor.app/pro' : 'https://www.worldmonitor.app/pro'}" target="_blank" rel="noopener">Pro</a>
@@ -694,7 +684,7 @@ export class PanelLayoutManager implements AppModule {
           <img src="/favico/favicon-32x32.png" alt="" width="28" height="28" class="site-footer-icon" />
           <div class="site-footer-brand-text">
             <span class="site-footer-name">MANDEL</span>
-            <span class="site-footer-sub">v${__APP_VERSION__} &middot; <a href="https://x.com/worldmonitorai" target="_blank" rel="noopener" class="site-footer-credit">alpha fish</a></span>
+            <span class="site-footer-sub">v${__APP_VERSION__} &middot; <span class="site-footer-credit">alpha fish</span></span>
           </div>
         </div>
         <div class="mandel-dock" id="mandelDock" role="status" aria-live="polite">
@@ -710,7 +700,7 @@ export class PanelLayoutManager implements AppModule {
           <a href="${this.ctx.isDesktopApp ? 'https://worldmonitor.app/blog/' : 'https://www.worldmonitor.app/blog/'}" target="_blank" rel="noopener">Blog</a>
           <a href="${this.ctx.isDesktopApp ? 'https://worldmonitor.app/docs' : 'https://www.worldmonitor.app/docs'}" target="_blank" rel="noopener">Docs</a>
           <a href="https://status.worldmonitor.app/" target="_blank" rel="noopener">Status</a>
-          <a href="https://github.com/koala73/worldmonitor" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://github.com/potemkin666/mandelbrot" target="_blank" rel="noopener">GitHub</a>
           <a href="https://discord.gg/re63kWKxaz" target="_blank" rel="noopener">Discord</a>
           <a href="https://x.com/worldmonitorai" target="_blank" rel="noopener">X</a>
           ${this.ctx.isDesktopApp ? '' : `<span id="footerDownloadMount"></span>`}

@@ -28,7 +28,7 @@ const cleaned = stripThinkingTags(rawSummary);
 
 ## Technical Details
 - Files: `server/worldmonitor/news/v1/summarize-article.ts`, `server/_shared/llm.ts`
-- PR: koala73/worldmonitor#2380
+- PR: potemkin666/worldmonitor#2380
 
 ## Acceptance Criteria
 - [ ] `summarize-article.ts` imports `stripThinkingTags` from `_shared/llm.ts`

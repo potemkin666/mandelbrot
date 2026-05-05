@@ -46,7 +46,7 @@ Option B (same as todo 036 — one fix addresses both issues).
 ## Technical Details
 - File: `src/components/DeckGLMap.ts`
 - 21 supported locales, only English partially works (and even then `HIGH`/`APT` don't match)
-- PR: koala73/worldmonitor#2370
+- PR: potemkin666/worldmonitor#2370
 
 ## Acceptance Criteria
 - [ ] Legend visibility works correctly in French, German, Arabic, and other non-English locales

@@ -63,7 +63,7 @@ Option B. Stamp `data-legend-layer` at creation, eliminate the string map entire
 ## Technical Details
 - File: `src/components/DeckGLMap.ts`
 - Method: `updateLegendVisibility()` (new, PR #2370) and `createLegend()` (line ~4494)
-- PR: koala73/worldmonitor#2370
+- PR: potemkin666/worldmonitor#2370
 
 ## Acceptance Criteria
 - [ ] All legend items show/hide correctly when toggling layers on tech, finance, full, happy variants

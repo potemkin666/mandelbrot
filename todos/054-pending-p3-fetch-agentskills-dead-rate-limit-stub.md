@@ -30,7 +30,7 @@ Add a Vercel Firewall rule in the dashboard capping requests per IP per minute f
 
 ## Technical Details
 - File: `api/skills/fetch-agentskills.ts:17-21, 62`
-- PR: koala73/worldmonitor#2380
+- PR: potemkin666/worldmonitor#2380
 
 ## Acceptance Criteria
 - [ ] No dead `void ip` block in the codebase

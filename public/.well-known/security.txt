@@ -1,6 +1,6 @@
 Contact: mailto:alphafish@worldmonitor.app
-Contact: https://github.com/koala73/worldmonitor/security/advisories
-Policy: https://github.com/koala73/worldmonitor/security/advisories
+Contact: https://github.com/potemkin666/mandelbrot/security/advisories
+Policy: https://github.com/potemkin666/mandelbrot/security/advisories
 Preferred-Languages: en
 Canonical: https://worldmonitor.app/.well-known/security.txt
 Expires: 2027-03-02T00:00:00.000Z

@@ -45,7 +45,7 @@ Only check Bearer token for premium. API key holders who lack a Bearer token wou
 
 ## Technical Details
 - File: `server/_shared/premium-check.ts`
-- PR: koala73/worldmonitor#2386
+- PR: potemkin666/worldmonitor#2386
 - Related: `api/_api-key.js:49-68` (`isTrustedBrowserOrigin`)
 
 ## Acceptance Criteria

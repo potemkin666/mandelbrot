@@ -27,7 +27,7 @@ Available globally in all browser targets and Vercel Edge runtime.
 
 ## Technical Details
 - File: `src/services/preferences-content.ts`
-- PR: koala73/worldmonitor#2380
+- PR: potemkin666/worldmonitor#2380
 
 ## Acceptance Criteria
 - [ ] Framework `id` uses `crypto.randomUUID()` instead of `Date.now()`

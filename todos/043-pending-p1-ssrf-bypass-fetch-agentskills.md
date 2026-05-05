@@ -44,7 +44,7 @@ Rely on Vercel's network-level protection to block fetches to internal IPs.
 
 ## Technical Details
 - File: `api/skills/fetch-agentskills.ts:42`
-- PR: koala73/worldmonitor#2380
+- PR: potemkin666/worldmonitor#2380
 - Constraint: Vercel edge cannot use `node:dns` (from MEMORY.md)
 - Reference: ssrf-toctou-dns-pinning skill, VibeSec-Skill
 

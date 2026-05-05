@@ -1,7 +1,7 @@
 /**
  * Regression tests for input-shape validation on supply-chain handlers.
  * Locks in the "400 on bad input / empty-200 on deny / empty-200 on no data"
- * three-way contract after koala73 review HIGH(new) #2 on #3242.
+ * three-way contract after potemkin666 review HIGH(new) #2 on #3242.
  *
  * Prior state (bug): malformed iso2 / missing chokepointId / unknown
  * chokepointId all collapsed to empty-200, indistinguishable from the
