@@ -81,5 +81,5 @@ If you ever want to expose it to your network, you must change the host setting 
 
 IF SOMETHING GOES SIDEWAYS
 --------------------------
-Read TROUBLESHOOTING.txt.
+Read docs/local-launcher/TROUBLESHOOTING.txt.
 It was written for bad days.

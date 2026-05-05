@@ -13,8 +13,8 @@ test('portable launcher files exist', () => {
     'STOP.bat',
     'RUN ME.sh',
     'RUN ME.command',
-    'README-FIRST.txt',
-    'TROUBLESHOOTING.txt',
+    'docs/local-launcher/README-FIRST.txt',
+    'docs/local-launcher/TROUBLESHOOTING.txt',
   ]) {
     assert.ok(existsSync(resolve(root, file)), `${file} should exist`);
   }

@@ -779,7 +779,7 @@ if (urlParams.get('settings') === '1') {
     })
     .catch((error) => {
       console.error(error);
-      setMandelBootState('error', 'Something tripped during startup. Check TROUBLESHOOTING.txt or the browser console.');
+      setMandelBootState('error', 'Something tripped during startup. Check docs/local-launcher/TROUBLESHOOTING.txt or the browser console.');
     });
 }
 

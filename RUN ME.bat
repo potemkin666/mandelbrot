@@ -71,7 +71,7 @@ if not defined MODE if "%HAS_DOCKER%"=="1" set "MODE=docker"
 if not defined MODE (
   echo.
   echo I could not figure out the safest launch path for this folder.
-  echo Read README-FIRST.txt, then TROUBLESHOOTING.txt if you get stuck.
+  echo Read docs\local-launcher\README-FIRST.txt, then docs\local-launcher\TROUBLESHOOTING.txt if you get stuck.
   goto :error_pause
 )
 
@@ -122,7 +122,7 @@ goto :wait_for_url
 
 :launch_node_next
 echo [2/6] This folder looks like a Node app, but not the Vite flavor this launcher knows best.
-echo Please see TROUBLESHOOTING.txt for the closest manual path.
+echo Please see docs\local-launcher\TROUBLESHOOTING.txt for the closest manual path.
 goto :error_pause
 
 :launch_python
@@ -186,7 +186,7 @@ docker compose up -d --build
 if errorlevel 1 (
   echo.
   echo Docker Compose did not start cleanly.
-  echo Please read TROUBLESHOOTING.txt for the plain-English rescue steps.
+  echo Please read docs\local-launcher\TROUBLESHOOTING.txt for the plain-English rescue steps.
   goto :error_pause
 )
 echo docker>"%MODE_FILE%"
