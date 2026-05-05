@@ -178,6 +178,7 @@ export interface PanelLayoutManagerCallbacks {
 }
 
 const DEFAULT_FOCUS_COUNTRY = 'GB';
+// Pin the UK first so first-run users land on the requested default focus country.
 const FOCUS_COUNTRY_OPTIONS = Object.entries(CURATED_COUNTRIES)
   .map(([code, config]) => ({ code, name: config.name }))
   .sort((a, b) => {

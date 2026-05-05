@@ -482,7 +482,7 @@ export class EventHandlerManager implements AppModule {
     });
 
     const focusSelect = document.getElementById('focusSelect') as HTMLSelectElement | null;
-    const hasSavedFocusCountry = localStorage.getItem(STORAGE_KEYS.focusCountry) !== null;
+    const savedFocusCountry = localStorage.getItem(STORAGE_KEYS.focusCountry);
     const focusCountry = loadFromStorage<string>(STORAGE_KEYS.focusCountry, 'GB');
     if (focusSelect) {
       focusSelect.value = focusCountry;
@@ -492,7 +492,7 @@ export class EventHandlerManager implements AppModule {
         saveToStorage(STORAGE_KEYS.focusCountry, code);
         this.callbacks.openCountryBriefByCode?.(code);
       });
-      if (!hasSavedFocusCountry && focusCountry) {
+      if (savedFocusCountry === null && focusCountry === 'GB') {
         saveToStorage(STORAGE_KEYS.focusCountry, focusCountry);
         queueMicrotask(() => this.callbacks.openCountryBriefByCode?.(focusCountry));
       }
