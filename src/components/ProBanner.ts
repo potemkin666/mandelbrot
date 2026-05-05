@@ -13,8 +13,8 @@ let bannerEl: HTMLElement | null = null;
 // surface a banner the user has already explicitly dismissed.
 let bannerContainer: HTMLElement | null = null;
 
-// Versioned dismiss key. The banner copy changed from "Pro is coming / Reserve
-// your spot" to "Pro is launched / Upgrade to Pro"; a fresh key guarantees
+// Versioned dismiss key. The banner copy changed from the old launch CTA to
+// the current premium-availability banner; a fresh key guarantees
 // anyone who dismissed the pre-launch variant still sees the launch CTA. Also
 // clear the legacy key on first read so stale localStorage doesn't linger.
 const DISMISS_KEY = 'wm-pro-banner-launched-dismissed';
@@ -80,9 +80,8 @@ export function showProBanner(container: HTMLElement): void {
   banner.innerHTML = `
     <span class="pro-banner-badge">PRO</span>
     <span class="pro-banner-text">
-      <strong>Pro is launched</strong> — More Signal, Less Noise. More AI Briefings. A Geopolitical &amp; Equity Researcher just for you.
+      <strong>Premium features available</strong>
     </span>
-    <a class="pro-banner-cta" href="/pro#pricing">Upgrade to Pro →</a>
     <button class="pro-banner-close" aria-label="Dismiss">×</button>
   `;
 

@@ -55,4 +55,4 @@ tags: [code-review, security, prompt-injection, llm-self-improvement]
 ## Work Log
 
 - 2026-03-24: Found by compound-engineering:review:security-sentinel in PR #2178 review
-- Related skill: `/Users/eliehabib/.claude/skills/continuous-learning/skills/llm-self-improvement-prompt-injection/SKILL.md`
+- Related skill: `/Users/alphafish/.claude/skills/continuous-learning/skills/llm-self-improvement-prompt-injection/SKILL.md`

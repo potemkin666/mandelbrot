@@ -1,7 +1,7 @@
 /**
  * Locked PRO-launch email content.
  *
- * The body was finalised on 2026-04-26 with Elie. Source-of-truth copy
+ * The body was finalised on 2026-04-26 with alpha fish. Source-of-truth copy
  * lives in this file (not in code review comments or chat history) so
  * future re-sends can reproduce the exact wording.
  *
@@ -9,8 +9,8 @@
  * separate PR — don't change it inline as part of operational work.
  */
 
-export const PRO_LAUNCH_FROM = "Elie from WorldMonitor <news@worldmonitor.app>";
-export const PRO_LAUNCH_REPLY_TO = "elie@worldmonitor.app";
+export const PRO_LAUNCH_FROM = "alpha fish from WorldMonitor <news@worldmonitor.app>";
+export const PRO_LAUNCH_REPLY_TO = "alphafish@worldmonitor.app";
 export const PRO_LAUNCH_SUBJECT = "You waitlisted WorldMonitor PRO. It's now live.";
 
 // Primary CTA destination. UTMs scoped to this campaign so we can attribute
@@ -31,7 +31,7 @@ const UNSUBSCRIBE_TOKEN = "{{{RESEND_UNSUBSCRIBE_URL}}}";
  * deliverability spam-filter input. Should communicate the same value
  * as the HTML version, not be a stripped-down preview of it.
  */
-export const PRO_LAUNCH_TEXT = `I'm Elie, founder of WorldMonitor. PRO launched today (https://worldmonitor.app/pro). I'm writing because you signed up a month ago, when the product was smaller and different.
+export const PRO_LAUNCH_TEXT = `I'm alpha fish, founder of WorldMonitor. PRO launched today (https://worldmonitor.app/pro). I'm writing because you signed up a month ago, when the product was smaller and different.
 
 Here's what it is now.
 
@@ -66,7 +66,7 @@ Code EARLYWM30: 30% off any PRO plan, 30 days. If anything above made you think 
 
 If not, reply and tell me what was missing. That's the one I'll act on.
 
-Elie
+alpha fish
 
 —
 
@@ -81,7 +81,7 @@ ${PRO_LAUNCH_PHYSICAL_ADDRESS}
  */
 export const PRO_LAUNCH_HTML = `<!DOCTYPE html><html><body style="margin:0;padding:0;background:#ffffff;color:#111;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;">
 <div style="max-width:620px;margin:0 auto;padding:32px 24px;">
-<p>I'm Elie, founder of WorldMonitor. <a href="https://worldmonitor.app/pro?utm_source=resend&utm_medium=email&utm_campaign=pro-launch&utm_content=opener" style="color:#0066cc;">PRO launched today</a>. I'm writing because you signed up a month ago, when the product was smaller and different.</p>
+<p>I'm alpha fish, founder of WorldMonitor. <a href="https://worldmonitor.app/pro?utm_source=resend&utm_medium=email&utm_campaign=pro-launch&utm_content=opener" style="color:#0066cc;">PRO launched today</a>. I'm writing because you signed up a month ago, when the product was smaller and different.</p>
 <p>Here's what it is now.</p>
 <p>WorldMonitor stopped being only a real-time monitoring dashboard, though it still excels at that. It's also a research tool now. It tracks what's happening, and it forecasts what happens next: scenario probabilities on conflicts, market reactions to headlines, supply-chain shock paths, country stability trajectories. You read the present and stress-test the future in the same place.</p>
 <p><strong>The dashboard grew sideways.</strong> Conflicts stream live alongside sanctions, regime shifts, GPS jamming, displacement, climate anomalies. Bilateral trade flows, tariff trends, chokepoint indices, route disruption, cost-shock simulations, stability scoring across 137 countries with deep coverage on 40+ indicators. AI stock analysis with price targets, backtesting, a scanner for tickers trending on Reddit. Live aircraft tracking, civilian and military: fighter scrambles over the Taiwan Strait, carrier strike groups in the Persian Gulf, special-ops by callsign, 100+ airports for delays and cascades. Useful when something breaks at 3 a.m. and a price chart won't tell you why.</p>

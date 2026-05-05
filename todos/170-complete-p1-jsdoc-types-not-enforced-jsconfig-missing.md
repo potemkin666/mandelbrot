@@ -15,7 +15,7 @@ All 13 modules under `scripts/regional-snapshot/*.mjs` use JSDoc annotations lik
 3. Therefore `tsc --checkJs` never validates these annotations
 4. The types are pure decoration that mislead reviewers into thinking the code is type-safe
 
-This directly violates the user-mandated rule from `/Users/eliehabib/.claude/projects/-Users-eliehabib-Documents-GitHub-worldmonitor/memory/feedback_type_safety_always.md`: "ALWAYS write type-safe code: JSDoc+@ts-check for .mjs, .types.d.ts for data structures, strict TS for .ts files. Non-negotiable."
+This directly violates the user-mandated rule from `/Users/alphafish/.claude/projects/-Users-alphafish-Documents-GitHub-worldmonitor/memory/feedback_type_safety_always.md`: "ALWAYS write type-safe code: JSDoc+@ts-check for .mjs, .types.d.ts for data structures, strict TS for .ts files. Non-negotiable."
 
 ## Findings
 - `scripts/jsconfig.json` includes only specific files; grep for "regional-snapshot" or "seed-regional-snapshots" in `jsconfig.json` returns nothing.
@@ -50,7 +50,7 @@ Convert the `.mjs` files to `.ts` and put them under `scripts/jsconfig.json` or 
   - `scripts/seed-regional-snapshots.mjs`
   - `scripts/regional-snapshot/*.mjs` (13 modules, add `// @ts-check`, fix import paths)
 - Components: build-time type checking, regional snapshot seed modules, CI pre-push hook
-- Related rule: `/Users/eliehabib/.claude/projects/-Users-eliehabib-Documents-GitHub-worldmonitor/memory/feedback_type_safety_always.md`
+- Related rule: `/Users/alphafish/.claude/projects/-Users-alphafish-Documents-GitHub-worldmonitor/memory/feedback_type_safety_always.md`
 
 ## Acceptance Criteria
 - [ ] `npx tsc --noEmit -p scripts/jsconfig.json` runs and validates regional-snapshot modules
