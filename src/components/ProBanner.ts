@@ -1,4 +1,3 @@
-import { trackGateHit } from '@/services/analytics';
 import { hasPremiumAccess } from '@/services/panel-gating';
 import { onEntitlementChange, getEntitlementState } from '@/services/entitlements';
 import { getCurrentClerkUser } from '@/services/clerk';
@@ -32,16 +31,6 @@ function isDismissed(): boolean {
   return true;
 }
 
-function dismiss(): void {
-  if (!bannerEl) return;
-  bannerEl.classList.add('pro-banner-out');
-  setTimeout(() => {
-    bannerEl?.remove();
-    bannerEl = null;
-  }, 300);
-  localStorage.setItem(DISMISS_KEY, String(Date.now()));
-}
-
 export function showProBanner(container: HTMLElement): void {
   // Cache container even on early-return paths so the entitlement-change
   // listener can re-mount on a downgrade. App.ts calls this once at init
@@ -73,32 +62,7 @@ export function showProBanner(container: HTMLElement): void {
   // user is actually free.
   if (getCurrentClerkUser() && getEntitlementState() === null) return;
 
-  trackGateHit('pro-banner');
-
-  const banner = document.createElement('div');
-  banner.className = 'pro-banner';
-  banner.innerHTML = `
-    <span class="pro-banner-badge">PRO</span>
-    <span class="pro-banner-text">
-      <strong>Premium features available</strong>
-    </span>
-    <button class="pro-banner-close" aria-label="Dismiss">×</button>
-  `;
-
-  banner.querySelector('.pro-banner-close')!.addEventListener('click', (e) => {
-    e.preventDefault();
-    dismiss();
-  });
-
-  const header = container.querySelector('.header');
-  if (header) {
-    header.before(banner);
-  } else {
-    container.prepend(banner);
-  }
-
-  bannerEl = banner;
-  requestAnimationFrame(() => banner.classList.add('pro-banner-in'));
+  return;
 }
 
 export function hideProBanner(): void {
