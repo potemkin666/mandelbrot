@@ -100,6 +100,7 @@ import {
 import { BETA_MODE } from '@/config/beta';
 import { t } from '@/services/i18n';
 import { getCurrentTheme } from '@/utils';
+import { resetLocalAppData } from '@/utils/local-reset';
 import { trackCriticalBannerAction } from '@/services/analytics';
 import { CustomWidgetPanel } from '@/components/CustomWidgetPanel';
 import { openWidgetChatModal } from '@/components/WidgetChatModal';
@@ -331,6 +332,11 @@ export class PanelLayoutManager implements AppModule {
       this.updatePanelGating(state);
     });
     this.fetchGitHubStars();
+    document.getElementById('mandelRefreshBtn')?.addEventListener('click', () => window.location.reload());
+    document.getElementById('mandelResetBtn')?.addEventListener('click', () => {
+      if (!window.confirm("Clear Mandel's saved layout, cache, and local tide pools for this browser?")) return;
+      void resetLocalAppData();
+    });
 
     // Handle analyst action chip "Create chart widget →" click
     this.boundWidgetCreatorHandler = ((e: CustomEvent<{ initialMessage?: string }>) => {
@@ -537,7 +543,7 @@ export class PanelLayoutManager implements AppModule {
               <span class="variant-label">Good News</span>
             </a>`;
       })()}</div>
-          <span class="logo">MONITOR</span><span class="logo-mobile">World Monitor</span><span class="version">v${__APP_VERSION__}</span>${BETA_MODE ? '<span class="beta-badge">BETA</span>' : ''}
+          <span class="logo">MANDEL</span><span class="logo-mobile">Mandel</span><span class="version">v${__APP_VERSION__}</span>${BETA_MODE ? '<span class="beta-badge">BETA</span>' : ''}
           <a href="https://x.com/eliehabib" target="_blank" rel="noopener" class="credit-link">
             <svg class="x-logo" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             <span class="credit-text">@eliehabib</span>
@@ -581,7 +587,7 @@ export class PanelLayoutManager implements AppModule {
       <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
       <nav class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-header">
-          <span class="mobile-menu-title">WORLD MONITOR</span>
+          <span class="mobile-menu-title">MANDEL</span>
           <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
           </button>
@@ -687,8 +693,16 @@ export class PanelLayoutManager implements AppModule {
         <div class="site-footer-brand">
           <img src="/favico/favicon-32x32.png" alt="" width="28" height="28" class="site-footer-icon" />
           <div class="site-footer-brand-text">
-            <span class="site-footer-name">WORLD MONITOR</span>
+            <span class="site-footer-name">MANDEL</span>
             <span class="site-footer-sub">v${__APP_VERSION__} &middot; <a href="https://x.com/eliehabib" target="_blank" rel="noopener" class="site-footer-credit">@eliehabib</a></span>
+          </div>
+        </div>
+        <div class="mandel-dock" id="mandelDock" role="status" aria-live="polite">
+          <div class="mandel-dock__label"><span class="mandel-dock__pulse"></span><span id="mandelDockState">Booting local tide</span></div>
+          <div class="mandel-dock__text"><strong>Signal Aquarium</strong><span id="mandelDockUpdated">Spinning up your local weird little control room...</span></div>
+          <div class="mandel-dock__actions">
+            <button type="button" class="mandel-dock__button" id="mandelRefreshBtn">Refresh</button>
+            <button type="button" class="mandel-dock__button mandel-dock__button--ghost" id="mandelResetBtn">Reset local data</button>
           </div>
         </div>
         <nav>
@@ -701,7 +715,7 @@ export class PanelLayoutManager implements AppModule {
           <a href="https://x.com/worldmonitorai" target="_blank" rel="noopener">X</a>
           ${this.ctx.isDesktopApp ? '' : `<span id="footerDownloadMount"></span>`}
         </nav>
-        <span class="site-footer-copy">&copy; ${new Date().getFullYear()} World Monitor</span>
+        <span class="site-footer-copy">&copy; ${new Date().getFullYear()} Mandel</span>
       </footer>
     `;
 

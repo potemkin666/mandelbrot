@@ -1,0 +1,65 @@
+MANDEL // TROUBLESHOOTING
+=========================
+
+1) RUN ME.bat opens and closes too fast
+---------------------------------------
+That should not happen now.
+If it does, right-click RUN ME.bat and choose “Run as administrator” only if your machine is blocking normal script execution.
+Otherwise open the file by double-clicking again and read the message it leaves on screen.
+
+2) It says Node.js is missing
+-----------------------------
+Install Node.js, then run RUN ME.bat again.
+This project starts through a local Node/Vite dev server by default.
+
+3) It says Docker Desktop is required
+-------------------------------------
+That only matters if the launcher fell back to Docker mode.
+Install Docker Desktop, open it, wait until it is fully started, then try again.
+
+4) The browser never opens
+--------------------------
+Check the launcher window for the exact local URL.
+Try copying that URL into your browser manually.
+Also check .launcher\mandel.log for the last startup messages.
+
+5) Port 3000 is busy
+--------------------
+The launcher should try the next free port automatically.
+If you see a different port in the launcher window, that is normal.
+Use the URL it prints.
+
+6) npm install fails
+--------------------
+Usually this means:
+- your internet connection dropped
+- your antivirus interrupted the install
+- Node.js is too old
+
+Try again once. If it keeps failing, delete node_modules (if it exists) and rerun RUN ME.bat.
+
+7) The app starts but looks broken or stale
+-------------------------------------------
+Use the “Reset local data” button inside Mandel.
+If that does not help:
+- stop the app with STOP.bat
+- clear your browser storage for http://127.0.0.1:3000
+- rerun RUN ME.bat
+
+8) STOP.bat says nothing was running
+------------------------------------
+That usually means Mandel already stopped, or the saved PID file is stale.
+You can safely run RUN ME.bat again.
+
+9) I want this reachable from other devices on my network
+--------------------------------------------------------
+That is intentionally OFF by default.
+For safety, Mandel binds to 127.0.0.1.
+If you really want LAN access, edit the launch environment and set WM_HOST to 0.0.0.0 yourself.
+Do that only on purpose.
+
+10) Where should I look for clues?
+----------------------------------
+First place: .launcher\mandel.log
+Second place: the browser devtools console
+Third place: the README.md if you want the more detailed project overview

@@ -5,6 +5,7 @@ import * as Sentry from '@sentry/browser';
 import { inject } from '@vercel/analytics';
 import { App } from './App';
 import { installUtmInterceptor } from './utils/utm';
+import { LOCAL_SHELL_LABELS, type LocalShellState } from './utils/local-shell';
 
 const sentryDsn = import.meta.env.VITE_SENTRY_DSN?.trim();
 
@@ -718,6 +719,14 @@ installWebApiRedirect();
 installStaleBundleCheck();
 loadDesktopSecrets().catch(() => {});
 
+const setMandelBootState = (mode: Extract<LocalShellState, 'starting' | 'error'>, detail: string): void => {
+  document.body.dataset.mandelState = mode;
+  const stateEl = document.getElementById('mandelDockState');
+  const detailEl = document.getElementById('mandelDockUpdated');
+  if (stateEl) stateEl.textContent = LOCAL_SHELL_LABELS[mode];
+  if (detailEl) detailEl.textContent = detail;
+};
+
 // Apply stored theme preference before app initialization (safety net for inline script)
 applyStoredTheme();
 applyFont();
@@ -761,13 +770,17 @@ if (urlParams.get('settings') === '1') {
   );
 } else {
   installUtmInterceptor();
+  setMandelBootState('starting', 'Warming the signal aquarium and checking the shoreline...');
   const app = new App('app');
   app
     .init()
     .then(() => {
       clearChunkReloadGuard(chunkReloadStorageKey);
     })
-    .catch(console.error);
+    .catch((error) => {
+      console.error(error);
+      setMandelBootState('error', 'Something tripped during startup. Check TROUBLESHOOTING.txt or the browser console.');
+    });
 }
 
 // Debug helpers for geo-convergence testing (remove in production)

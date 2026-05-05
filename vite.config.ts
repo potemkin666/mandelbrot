@@ -724,12 +724,20 @@ function gpsjamDevPlugin(): Plugin {
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
+  const wmHost = env.WM_HOST?.trim() || '127.0.0.1';
+  const wmPort = Number.parseInt(env.WM_PORT ?? '', 10);
+  const serverPort = Number.isFinite(wmPort) && wmPort > 0 ? wmPort : 3000;
   // Inject environment variables from .env files into process.env.
   // This ensures that API keys and other secrets in .env.local are
   // available to the dev server plugins and server-side handlers.
   Object.assign(process.env, env);
 
   const isE2E = process.env.VITE_E2E === '1';
+  const autoOpenBrowser = env.WM_AUTO_OPEN_BROWSER === 'false'
+    ? false
+    : env.WM_AUTO_OPEN_BROWSER === 'true'
+      ? true
+      : !isE2E;
   const isDesktopBuild = process.env.VITE_DESKTOP_RUNTIME === '1';
   const activeVariant = process.env.VITE_VARIANT || 'full';
   const activeMeta = VARIANT_META[activeVariant] || VARIANT_META.full;
@@ -1007,8 +1015,9 @@ export default defineConfig(({ mode }) => {
       },
     },
     server: {
-      port: 3000,
-      open: !isE2E,
+      host: wmHost,
+      port: serverPort,
+      open: autoOpenBrowser,
       hmr: isE2E ? false : undefined,
       watch: {
         ignored: [

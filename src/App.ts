@@ -80,6 +80,7 @@ import { DataLoaderManager } from '@/app/data-loader';
 import { EventHandlerManager } from '@/app/event-handlers';
 import { resolveUserRegion, resolvePreciseUserCoordinates, type PreciseCoordinates } from '@/utils/user-location';
 import { showProBanner } from '@/components/ProBanner';
+import { LOCAL_SHELL_LABELS, type LocalShellState } from '@/utils/local-shell';
 import { initAuthState, subscribeAuthState } from '@/services/auth-state';
 import { install as installCloudPrefsSync, onSignIn as cloudPrefsSignIn, onSignOut as cloudPrefsSignOut } from '@/utils/cloud-prefs-sync';
 import { getConvexClient, getConvexApi, waitForConvexAuth } from '@/services/convex-client';
@@ -257,6 +258,14 @@ export class App {
 
     this.cachedModeBannerEl?.remove();
     this.cachedModeBannerEl = null;
+  }
+
+  private updateMandelDock(mode: LocalShellState, detail: string): void {
+    document.body.dataset.mandelState = mode;
+    const stateEl = document.getElementById('mandelDockState');
+    const detailEl = document.getElementById('mandelDockUpdated');
+    if (stateEl) stateEl.textContent = LOCAL_SHELL_LABELS[mode];
+    if (detailEl) detailEl.textContent = detail;
   }
 
   private async primeVisiblePanelData(forceAll = false): Promise<void> {
@@ -1059,6 +1068,7 @@ export class App {
     // init() is async so the dynamic MapContainer import can resolve before
     // downstream code (e.g. mobileGeoCoords→state.map.setCenter) reads ctx.map.
     await this.panelLayout.init();
+    this.updateMandelDock('starting', 'Local shell online. Filling the map tank and panel reef...');
     showProBanner(this.state.container);
     this.updateConnectivityUi();
     window.addEventListener('online', this.handleConnectivityChange);
@@ -1221,6 +1231,7 @@ export class App {
       panel_count: Object.keys(this.state.panels).length,
     });
     this.eventHandlers.setupPanelViewTracking();
+    this.updateMandelDock('ready', `Ready at ${window.location.origin} · ${new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`);
   }
 
   /**
