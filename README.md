@@ -83,5 +83,4 @@ npm run lint:md
 
 ## Notes
 
-- The supplied attachment URL returned `404` from this sandbox, so the repo now includes a locally generated Mandel background GIF as the closest reliable in-repo fallback.
 - Many upstream links, APIs, and deployment references still point at the existing `worldmonitor` infrastructure.

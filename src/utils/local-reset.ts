@@ -1,6 +1,6 @@
 import { CLOUD_SYNC_KEYS } from './sync-keys';
 
-const RESET_PREFIXES = ['worldmonitor', 'wm-', 'aviation:'];
+const RESET_PREFIXES = ['mandel', 'worldmonitor', 'wm-', 'aviation:'];
 const RESET_DATABASES = [
   'worldmonitor_db',
   'worldmonitor_persistent_cache',
@@ -23,11 +23,11 @@ function deleteIndexedDb(name: string): Promise<void> {
 
 export async function resetLocalAppData(): Promise<void> {
   try {
-    const keys = new Set<string>(CLOUD_SYNC_KEYS as readonly string[]);
+    const cloudSyncKeys = new Set<string>(CLOUD_SYNC_KEYS as readonly string[]);
     for (let index = localStorage.length - 1; index >= 0; index -= 1) {
       const key = localStorage.key(index);
       if (!key) continue;
-      if (keys.has(key) || RESET_PREFIXES.some((prefix) => key.startsWith(prefix))) {
+      if (cloudSyncKeys.has(key) || RESET_PREFIXES.some((prefix) => key.startsWith(prefix))) {
         localStorage.removeItem(key);
       }
     }
